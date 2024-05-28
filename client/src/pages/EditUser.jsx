@@ -17,15 +17,12 @@ const EditUser = () => {
 
   const getUserData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/users/${id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${API}/api/admin/users/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       const data = await response.json();
       setUser(data);
     } catch (error) {
@@ -45,17 +42,14 @@ const EditUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/users/update/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: authorizationToken,
-          },
-          body: JSON.stringify(user),
-        }
-      );
+      const response = await fetch(`${API}/api/admin/users/update/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: authorizationToken,
+        },
+        body: JSON.stringify(user),
+      });
       if (response.ok) {
         // toast.success("Updated Successfully");
         navigate("/admin/users");

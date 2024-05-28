@@ -24,15 +24,12 @@ export const AdminContacts = () => {
 
   const deleteContacts = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/contact/delete/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${API}/api/admin/contact/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       const data = await response.json();
       toast.success("Successfully deleted");
     } catch (error) {

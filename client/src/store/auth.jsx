@@ -9,6 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const authorizationToken = `Bearer ${token}`;
+  const API = import.meta.env.BACKEND_URI;
+
   const storetokenInLS = (serverToken) => {
     setToken(serverToken);
     return localStorage.setItem("token", serverToken);
@@ -23,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const userAuthentication = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/user", {
+      const response = await fetch(`${API}/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -46,7 +48,7 @@ export const AuthProvider = ({ children }) => {
 
   const getServiceData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/data/service", {
+      const response = await fetch(`${API}/api/data/service`, {
         method: "GET",
       });
       if (response.ok) {
@@ -75,6 +77,7 @@ export const AuthProvider = ({ children }) => {
         services,
         authorizationToken,
         isLoading,
+        API,
       }}
     >
       {children}

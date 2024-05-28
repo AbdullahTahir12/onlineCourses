@@ -62,6 +62,7 @@ li {
   max-width: 140rem;
   padding: 4rem 2.4rem;
   margin: 0 auto;
+  align-items: center;
 }
 
 .toastBody {
@@ -210,6 +211,12 @@ button {
       padding: 0.4rem 0.6rem;
     }
   }
+}
+
+.logo-brand img {
+  width: 40% !important;
+  height: auto;
+  object-fit: cover;
 }
 
 button:hover {
